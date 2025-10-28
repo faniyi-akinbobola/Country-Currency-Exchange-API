@@ -33,9 +33,16 @@
 [![NestJS](https://img.shields.io/badge/NestJS-11.0+-red.svg)](https://nestjs.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue.svg)](https://www.typescriptlang.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0+-orange.svg)](https://www.mysql.com/)
-[![Swagger](https://img.shields.io/badge/API%20Docs-Swagger-brightgreen.svg)](http://localhost:3003/api/docs)
+[![Railway](https://img.shields.io/badge/Deployed%20on-Railway-brightgreen.svg)](http://country-currency-exchange-api-production-b15f.up.railway.app)
+[![API Docs](https://img.shields.io/badge/API%20Docs-Swagger-brightgreen.svg)](http://country-currency-exchange-api-production-b15f.up.railway.app/api/docs)
 
-## 🎯 What This API Does
+## � Live Demo
+
+**🚀 API is live at**: [http://country-currency-exchange-api-production-b15f.up.railway.app](http://country-currency-exchange-api-production-b15f.up.railway.app)
+
+**📚 Interactive API Documentation**: [http://country-currency-exchange-api-production-b15f.up.railway.app/api/docs](http://country-currency-exchange-api-production-b15f.up.railway.app/api/docs)
+
+## �🎯 What This API Does
 
 This API serves as a comprehensive solution for managing country data and economic calculations. It fetches real-time country information, integrates with exchange rate APIs, calculates estimated GDP figures, and provides visual summaries - all through a clean, well-documented REST interface.
 
@@ -51,6 +58,8 @@ This API serves as a comprehensive solution for managing country data and econom
 
 ## API Endpoints
 
+**Base URL**: `http://country-currency-exchange-api-production-b15f.up.railway.app`
+
 ### Core Operations
 
 - `POST /countries/refresh` - Refresh country data from external APIs
@@ -59,12 +68,14 @@ This API serves as a comprehensive solution for managing country data and econom
 
 ### Search & Management
 
-- `GET /countries/name?name={query}` - Search countries by name
-- `DELETE /countries/name?name={query}` - Delete countries by name pattern
+- `GET /countries/search?name={query}` - Search countries by name
+- `DELETE /countries/delete?name={query}` - Delete countries by name pattern
 
 ### Visualization
 
 - `GET /countries/image` - Get generated summary image
+
+**💡 Try it live**: Visit the [Swagger UI](http://country-currency-exchange-api-production-b15f.up.railway.app/api/docs) to test all endpoints interactively!
 
 ## 🚀 Quick Start
 
@@ -246,7 +257,31 @@ npm install --save-dev package-name
 
 ### API Testing
 
-Use the provided HTTP test file for quick API testing:
+#### Live API Testing (Production)
+Test the live API directly:
+
+```bash
+# Base URL for production
+BASE_URL="http://country-currency-exchange-api-production-b15f.up.railway.app"
+
+# Refresh country data
+curl -X POST $BASE_URL/countries/refresh
+
+# Get all countries
+curl $BASE_URL/countries
+
+# Search countries by name
+curl "$BASE_URL/countries/search?name=united"
+
+# Get system status
+curl $BASE_URL/countries/status
+
+# Get summary image
+curl $BASE_URL/countries/image -o summary.png
+```
+
+#### Local Development Testing
+Use the provided HTTP test file for local testing:
 
 ```bash
 # Open api-test.http in VS Code with REST Client extension
@@ -259,7 +294,7 @@ curl -X POST http://localhost:3003/countries/refresh
 curl http://localhost:3003/countries
 
 # Search countries by name
-curl "http://localhost:3003/countries/name?name=united"
+curl "http://localhost:3003/countries/search?name=united"
 
 # Get system status
 curl http://localhost:3003/countries/status
@@ -267,6 +302,8 @@ curl http://localhost:3003/countries/status
 # Get summary image
 curl http://localhost:3003/countries/image
 ```
+
+**🌐 Interactive Testing**: Visit the [Swagger UI](http://country-currency-exchange-api-production-b15f.up.railway.app/api/docs) for a complete interactive API testing experience!
 
 ### Unit & Integration Tests
 
@@ -311,34 +348,47 @@ npm run start:prod
 
 ## 📊 Usage Examples
 
-### 1. First Time Setup
+### 1. Try the Live API
 
 ```bash
-# After installation, refresh data from external APIs
-curl -X POST http://localhost:3003/countries/refresh
+# Production API base URL
+BASE_URL="http://country-currency-exchange-api-production-b15f.up.railway.app"
 
-# Check if data was loaded successfully
-curl http://localhost:3003/countries/status
+# Get all countries (already populated with data)
+curl $BASE_URL/countries
+
+# Check system status
+curl $BASE_URL/countries/status
 ```
 
 ### 2. Search Operations
 
 ```bash
 # Find countries with "united" in the name
-curl "http://localhost:3003/countries/name?name=united"
+curl "$BASE_URL/countries/search?name=united"
 
-# Find European countries
-curl "http://localhost:3003/countries/name?name=europe"
+# Find countries by region
+curl "$BASE_URL/countries/search?name=africa"
 ```
 
 ### 3. Data Management
 
 ```bash
-# Delete test countries (be careful!)
-curl -X DELETE "http://localhost:3003/countries/name?name=test"
+# Refresh country data from external APIs
+curl -X POST $BASE_URL/countries/refresh
 
 # Get visual summary
-curl http://localhost:3003/countries/image -o summary.png
+curl $BASE_URL/countries/image -o summary.png
+```
+
+### 4. Local Development Setup
+
+```bash
+# After local installation, refresh data from external APIs
+curl -X POST http://localhost:3003/countries/refresh
+
+# Check if data was loaded successfully
+curl http://localhost:3003/countries/status
 ```
 
 ## 🔧 Troubleshooting
@@ -392,6 +442,25 @@ Ensure all required environment variables are set in your `.env` file:
 
 ## 🚀 Deployment
 
+### 🌐 Live Production Deployment
+
+**The API is currently deployed and running on Railway:**
+
+- **Production URL**: [http://country-currency-exchange-api-production-b15f.up.railway.app](http://country-currency-exchange-api-production-b15f.up.railway.app)
+- **API Documentation**: [http://country-currency-exchange-api-production-b15f.up.railway.app/api/docs](http://country-currency-exchange-api-production-b15f.up.railway.app/api/docs)
+- **Platform**: [Railway](https://railway.app/)
+- **Database**: Railway MySQL
+- **Status**: ✅ Active and fully functional
+
+### Railway Deployment Features
+
+- ✅ **Automatic deployments** from GitHub
+- ✅ **Managed MySQL database**
+- ✅ **HTTPS enabled**
+- ✅ **Environment variables** securely managed
+- ✅ **Zero-downtime deployments**
+- ✅ **Built-in monitoring** and logs
+
 ### Production Considerations
 
 1. **Environment Setup**
@@ -416,6 +485,15 @@ Ensure all required environment variables are set in your `.env` file:
    - Use proper database migrations
    - Backup your database before deployments
 
+### Alternative Cloud Deployment Options
+
+- **Railway** ⭐ (Currently used) - Easy deployment with managed services
+- **Heroku**: Easy deployment with automatic builds
+- **AWS EC2/ECS**: Scalable container deployment
+- **DigitalOcean**: Simple droplet deployment
+- **Render**: Modern alternative to Heroku
+- **Vercel**: Great for serverless deployments
+
 ### Docker Deployment (Optional)
 
 Create a `Dockerfile`:
@@ -429,13 +507,6 @@ COPY dist ./dist
 EXPOSE 3000
 CMD ["npm", "run", "start:prod"]
 ```
-
-### Cloud Deployment Options
-
-- **Heroku**: Easy deployment with automatic builds
-- **AWS EC2/ECS**: Scalable container deployment
-- **DigitalOcean**: Simple droplet deployment
-- **NestJS Mau**: Official NestJS cloud platform
 
 For detailed deployment guides, check the [NestJS deployment documentation](https://docs.nestjs.com/deployment).
 
