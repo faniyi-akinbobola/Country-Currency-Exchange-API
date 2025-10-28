@@ -1,0 +1,46 @@
+### Country Currency Exchange API Tests
+
+# Base URL
+@baseUrl = http://localhost:3003
+
+### 1. Test Refresh Countries and Save
+POST {{baseUrl}}/countries/refresh
+Content-Type: application/json
+
+###
+
+### 2. Get All Countries (after refresh)
+GET {{baseUrl}}/countries
+
+###
+
+### 3. Get Countries by Name (Search by partial name)
+GET {{baseUrl}}/countries/name?name=afghanistan
+# Try other examples:
+# GET {{baseUrl}}/countries/name?name=germany
+# GET {{baseUrl}}/countries/name?name=jap
+
+###
+
+### 4. Delete Countries by Name (Delete by partial name match)
+DELETE {{baseUrl}}/countries/name?name=afghanistan
+# WARNING: This will delete countries matching the name pattern
+# Use with caution! Try with test data first
+# DELETE {{baseUrl}}/countries/name?name=vatican
+
+###
+
+### 5. Get Countries Status
+GET {{baseUrl}}/countries/status
+
+###
+
+### 6. Get Country Image
+GET {{baseUrl}}/countries/image
+
+###
+
+### 7. Test Root Endpoint
+GET {{baseUrl}}/
+
+###

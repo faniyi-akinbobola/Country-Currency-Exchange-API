@@ -1,0 +1,15 @@
+### Test refresh endpoint
+POST http://localhost:3002/countries/refresh
+Content-Type: application/json
+
+### Test get all countries
+GET http://localhost:3002/countries
+
+### Test get countries by name
+GET http://localhost:3002/countries/name?name=Nigeria
+
+### Test status endpoint
+GET http://localhost:3002/countries/status
+
+### Test image endpoint  
+GET http://localhost:3002/countries/image
