@@ -132,8 +132,27 @@ export class CountriesController {
   @ApiInternalServerErrorResponse({
     description: 'Database connection or server error',
   })
-  findAllCountries() {
-    return this.countriesService.findAllCountries();
+  @ApiQuery({
+    name: 'region',
+    required: false,
+    description: 'Filter by region (e.g., Africa, Europe)',
+  })
+  @ApiQuery({
+    name: 'currency',
+    required: false,
+    description: 'Filter by currency code (e.g., NGN, USD)',
+  })
+  @ApiQuery({
+    name: 'sort',
+    required: false,
+    description: 'Sort by GDP (gdp_desc for descending)',
+  })
+  findAllCountries(
+    @Query('region') region?: string,
+    @Query('currency') currency?: string,
+    @Query('sort') sort?: string,
+  ) {
+    return this.countriesService.findAllCountries(region, currency, sort);
   }
 
   @Get('search')

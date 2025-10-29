@@ -464,7 +464,17 @@ export class CountriesService {
    *
    * @returns Promise<Country[]> - Array of all countries in the database
    */
-  async findAllCountries() {
-    return this.countryRepository.find();
+  async findAllCountries(region?: string, currency?: string, sort?: string) {
+    const qb = this.countryRepository.createQueryBuilder('country');
+    if (region) {
+      qb.andWhere('country.region = :region', { region });
+    }
+    if (currency) {
+      qb.andWhere('country.currency_code = :currency', { currency });
+    }
+    if (sort === 'gdp_desc') {
+      qb.orderBy('country.estimated_gbp', 'DESC');
+    }
+    return qb.getMany();
   }
 }

@@ -14,19 +14,39 @@ GET {{baseUrl}}/countries
 
 ###
 
+### 2a. Get Countries filtered by region
+GET {{baseUrl}}/countries?region=Africa
+
+###
+
+### 2b. Get Countries filtered by currency
+GET {{baseUrl}}/countries?currency=NGN
+
+###
+
+### 2c. Get Countries sorted by GDP descending
+GET {{baseUrl}}/countries?sort=gdp_desc
+
+###
+
+### 2d. Get Countries filtered and sorted
+GET {{baseUrl}}/countries?region=Africa&currency=NGN&sort=gdp_desc
+
+###
+
 ### 3. Get Countries by Name (Search by partial name)
-GET {{baseUrl}}/countries/name?name=afghanistan
+GET {{baseUrl}}/countries/search?name=Åland Islands
 # Try other examples:
-# GET {{baseUrl}}/countries/name?name=germany
-# GET {{baseUrl}}/countries/name?name=jap
+# GET {{baseUrl}}/countries/search?name=germany
+# GET {{baseUrl}}/countries/search?name=jap
 
 ###
 
 ### 4. Delete Countries by Name (Delete by partial name match)
-DELETE {{baseUrl}}/countries/name?name=afghanistan
+DELETE {{baseUrl}}/countries/delete?name=afghanistan
 # WARNING: This will delete countries matching the name pattern
 # Use with caution! Try with test data first
-# DELETE {{baseUrl}}/countries/name?name=vatican
+# DELETE {{baseUrl}}/countries/delete?name=vatican
 
 ###
 
